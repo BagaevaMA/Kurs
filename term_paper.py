@@ -1,6 +1,6 @@
-token = input('Введите ключ пользователя VK')
-TOKEN = input('Введите токен Яндекс Диска')
-
+token_vk = input('Введите ключ пользователя VK')
+token_yandex = input('Введите токен Яндекс Диска')
+token_vk
 user_id = input('Введите id пользователя ВКонтакте')
 
 import requests
@@ -16,9 +16,9 @@ from tqdm import tqdm
 class VkUser:
     url = 'https://api.vk.com/method/'
 
-    def __init__(self, token, version):
+    def __init__(self, token_vk, version):
         self.params = {
-            'access_token': token,
+            'access_token': token_vk,
             'v': version
         }
 
@@ -38,8 +38,8 @@ class VkUser:
 class YandexDisk:
     host = 'https://cloud-api.yandex.net:443/'
 
-    def __init__(self, token1):
-        self.token = token1
+    def __init__(self, token_yandex):
+        self.token = token_yandex
 
     def get_headers(self):
         return {'Content-Type': 'application/json', 'Authorization': f'OAuth {self.token}'}
@@ -62,7 +62,7 @@ class YandexDisk:
         data['files_photo'] = []
         for photo in list_photo[0:number_of_photo]:
             uri = 'v1/disk/resources/upload/'
-            url= self.host+uri
+            url = self.host+uri
             disk_file_name = str(photo['likes'])
             photo_url = photo['url']
             path_to = f'/{new_folder}/{disk_file_name}.jpg'
@@ -87,29 +87,29 @@ class YandexDisk:
 
 if __name__ == "__main__":
 
-    ya = YandexDisk(TOKEN)
-    vk_client = VkUser(token, '5.131')
+    ya = YandexDisk(token_yandex)
+    vk_client = VkUser(token_vk, '5.131')
     getphotos = vk_client.get_photos(user_id)
 
     photo_list = []
 
-    for i in tqdm(getphotos):
+    for picture in tqdm(getphotos):
         photo = {}
-        for k, v in i.items():
-            if k == 'id':
-                photo[k] = v
-            elif k == 'date':
-                ts = int(v)
+        for key, value in picture.items():
+            if key == 'id':
+                photo[key] = value
+            elif key == 'date':
+                ts = int(value)
                 dt = datetime.utcfromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-                photo[k] = dt
-            elif k == 'likes':
-                for c, number in v.items():
-                    if c == 'count':
-                        photo[k] = number
-            elif k == 'sizes':
-                for item in v:
-                    for one, two in item.items():
-                        sort_size = sorted(v, key=lambda d: d['height'])
+                photo[key] = dt
+            elif key == 'likes':
+                for count, number in value.items():
+                    if count == 'count':
+                        photo[key] = number
+            elif key == 'sizes':
+                for size in value:
+                    for parametrs, amount in size.items():
+                        sort_size = sorted(value, key=lambda d: d['height'])
                         photo['height'] = sort_size[-1]['height']
                         photo['url'] = sort_size[-1]['url']
             time.sleep(0.001)
