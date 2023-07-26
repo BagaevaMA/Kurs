@@ -1,0 +1,51 @@
+import sqlalchemy
+from sqlalchemy.orm import sessionmaker
+
+from model import create_tables, Author, Book, Shop, Sale
+
+driver = input('Введите драйвер подключения')
+login = input('Введите логин')
+password = input('Введите пароль')
+server_name = input('Введите название сервера')
+server_port = input('Введите порт сервера')
+db_name = input('Введите название базы данных')
+DSN = f'{driver}://{login}:{password}@{server_name}:{server_port}/{db_name}'
+
+engine = sqlalchemy.create_engine(DSN)
+
+create_tables(engine)
+
+Session = sessionmaker(bind=engine)
+session = Session()
+
+author1 = Author(author_name='Александр Пушкин')
+
+session.add(author1)
+session.commit()
+
+
+book1 = Book(book_name='Капитанская дочка', author_id=author1.author_id)
+book2 = Book(book_name='Пиковая дама', author_id=author1.author_id)
+session.add_all([book1,book2])
+session.commit()
+
+shop1 = Shop(shop_name='Буквоед', shop_address='Москва, ул.Ленина дом 7')
+shop2 = Shop(shop_name='Лабиринт', shop_address='Москва, ул.Таращанцев дом 9')
+session.add_all([shop1,shop2])
+session.commit()
+
+sale1 = Sale(date_sale="09-01-2021", book_id=1, cost_of_book= 600, shop_id=1)
+sale2 = Sale(date_sale="10-02-2021", book_id=1, cost_of_book= 600,  shop_id=2)
+sale3 = Sale(date_sale="22-02-2020", book_id=2, cost_of_book= 500,  shop_id=1)
+sale4 = Sale(date_sale="21-03-2021", book_id=2, cost_of_book= 450,  shop_id=2)
+session.add_all([sale1,sale2,sale3,sale4])
+session.commit()
+
+name_author = input('Введите имя автора')
+
+filter_author = Author.author_name.like(f'%{name_author}%')
+q = session.query(Book.book_name, Shop.shop_name, Sale.cost_of_book, Sale.date_sale).join(Author).join(Sale).join(Shop).filter(filter_author).order_by(Sale.date_sale)
+for book, shop, price, date in q:
+    print(f'{book} | {shop} | {price} | {date}')
+
+session.close()

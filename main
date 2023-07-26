@@ -1,0 +1,116 @@
+
+print('Задание 1')
+
+geo_logs = [
+     {'visit1': ['Москва', 'Россия'], 'visit11': ['Морокоо', 'sxcsdf']},
+     {'visit2': ['Дели', 'Индия']},
+     {'visit3': ['Владимир', 'Россия']},
+     {'visit4': ['Лиссабон', 'Португалия']},
+     {'visit5': ['Париж', 'Франция']},
+     {'visit6': ['Лиссабон', 'Португалия']},
+     {'visit7': ['Тула', 'Россия']},
+     {'visit8': ['Тула', 'Россия']},
+     {'visit9': ['Курск', 'Россия']},
+     {'visit10': ['Архангельск', 'Россия']}
+ ]
+
+# russia = 'Россия'
+# itemsToDelete = []
+# for item in geo_logs:
+#   keysToDelete = []
+#   for k, v in item.items():
+#     if (v.count(russia) == 0):
+#       keysToDelete.append(k)
+#   for k in keysToDelete:
+#     del(item[k])
+#   if (len(item) == 0):
+#     itemsToDelete.append(item)
+# for item in itemsToDelete:
+#   geo_logs.remove(item)
+
+# print(geo_logs)
+
+
+# print('Задание 2')
+
+# ids = {'user1': [213, 213, 213, 15, 213],
+#        'user2': [54, 54, 119, 119, 119],
+#        'user3': [213, 98, 98, 35]}
+
+# number = list(ids.values())
+
+# new_list_number = [item for sublist in number for item in sublist]
+
+# number_set = set(new_list_number)
+# print(number_set)
+
+
+
+# print('Задание 3')
+
+# queries = [
+#     'смотреть сериалы онлайн',
+#     'новости спорта',
+#     'афиша кино',
+#     'курс доллара',
+#     'сериалы этим летом',
+#     'курс по питону',
+#     'сериалы про спорт'
+#     ]
+
+# countedQueries = {}
+# queryCount = len(queries)
+# for query in queries:
+#   wordsCount = query.count(' ') + 1
+#   countedQueries[wordsCount] = countedQueries.setdefault(wordsCount, 0) + 100 / queryCount
+
+# print(countedQueries)
+
+
+
+# queries = [
+#     'смотреть сериалы онлайн',
+#     'новости спорта',
+#     'афиша кино',
+#     'курс доллара',
+#     'сериалы этим летом',
+#     'курс по питону',
+#     'сериалы про спорт'
+#     ]
+
+# countedQueries = {}
+# queryCount = len(queries)
+# for query in queries:
+#   wordsCount = query.count(' ') + 1
+#   countedQueries[wordsCount] = countedQueries.setdefault(wordsCount, 0) + 100 / queryCount
+
+# print(countedQueries)
+
+# print('Задание 4')
+
+# stats = {'facebook': 55, 'yandex': 120, 'vk': 115, 'google': 99, 'email': 42, 'ok': 98}
+
+# maxSales = 0;
+# for company, sales in stats.items():
+#  if (sales > maxSales):
+#   maxCompany = company;
+#   maxSales = sales;
+
+# print(maxCompany)
+
+# valuesList = list(stats.values())
+# companiesList = list(stats.keys())
+# maxValue = max(valuesList)
+# index = valuesList.index(maxValue)
+# company = companiesList[index]
+# print(company)
+
+# print('Задание 5')
+
+list = ['2018-01-01', 'yandex', 'cpc', 100]
+list.reverse()
+value = list[0]
+for item in list[1:]:
+  value = dict([(item, value)])
+
+print(value)

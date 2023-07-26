@@ -1,0 +1,8 @@
+Date and time:2023-06-25 21:14:16.466983
+Name of function: average_grades_student_in_course
+Arguments ([<__main__.Student object at 0x0000015A72997FD0>, <__main__.Student object at 0x0000015A72997D60>, <__main__.Student object at 0x0000015A72997CD0>, <__main__.Student object at 0x0000015A72997C40>, <__main__.Student object at 0x0000015A72997C70>], 'Геймдизайнер') {}
+Result 8.25
+Date and time:2023-06-25 21:14:16.467926
+Name of function: average_grades_student_in_course
+Arguments ([<__main__.Lecturer object at 0x0000015A72997CA0>, <__main__.Lecturer object at 0x0000015A72997B20>, <__main__.Lecturer object at 0x0000015A72997AC0>], 'Фотограф') {}
+Result 6.5

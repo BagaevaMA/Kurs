@@ -1,0 +1,24 @@
+Date and time:2023-06-25 20:57:57.571068
+Name of function: hello_world
+Arguments () {}
+Result Hello World
+Date and time:2023-06-25 20:57:57.572237
+Name of function: summator
+Arguments (2, 2) {}
+Result 4
+Date and time:2023-06-25 20:57:57.572746
+Name of function: div
+Arguments (6, 2) {}
+Result 3.0
+Date and time:2023-06-25 20:57:57.573555
+Name of function: summator
+Arguments (4.3,) {'b': 2.2}
+Result 6.5
+Date and time:2023-06-25 20:57:57.574065
+Name of function: summator
+Arguments () {'a': 0, 'b': 0}
+Result 0
+Date and time:2023-06-25 21:00:38.139325
+Name of function: get_links
+Arguments () {}
+Result ['https://spb.hh.ru/vacancy/80002041?from=vacancy_search_list&query=python', 'https://spb.hh.ru/vacancy/81639879?from=vacancy_search_list&query=python', 'https://spb.hh.ru/vacancy/81442089?from=vacancy_search_list&query=python', 'https://spb.hh.ru/vacancy/82367414?from=vacancy_search_list&query=python', 'https://spb.hh.ru/vacancy/81974265?from=vacancy_search_list&query=python', 'https://spb.hh.ru/vacancy/82299184?from=vacancy_search_list&query=python']

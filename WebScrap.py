@@ -7,6 +7,8 @@ import json
 
 HOST = 'https://spb.hh.ru/search/vacancy?text=python&area=1&area=2'
 
+
+
 def get_headers():
     return Headers(browser = 'firefox', os = 'win').generate()
 

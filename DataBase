@@ -1,0 +1,75 @@
+import psycopg2
+
+def create_db(conn):
+
+
+with psycopg2.connect(database="netology_db", user="postgres", password="a3262626i") as conn:
+    with conn.cursor() as cur:
+        # удаление таблиц
+        # cur.execute("""
+        # DROP TABLE client_email;
+        # DROP TABLE phone_number;
+        # DROP TABLE clients;
+        # """)
+
+
+        cur.execute("""
+        CREATE TABLE IF NOT EXISTS clients(
+            client_id SERIAL PRIMARY KEY,
+            firstname_client VARCHAR(40) NOT NULL,
+            lastname_client VARCHAR(40) NOT NULL,
+        );
+        """)
+
+        cur.execute("""
+        CREATE TABLE IF NOT EXISTS phone_number(
+            number_id SERIAL PRIMARY KEY,
+            number INTEGER NOT NULL,
+            client_id INTEGER NOT NULL REFERENCES clients(client_id)
+        );
+        """)
+        conn.commit()
+
+        cur.execute("""
+        CREATE TABLE IF NOT EXISTS client_email(
+            email_id SERIAL PRIMARY KEY,
+            email VARCHAR(40) UNIQUE CHECK(email !='' and email = '%@%')
+            client_id INTEGER NOT NULL REFERENCES clients(client_id)
+        );
+        """)
+        conn.commit()
+
+        cur.execute("""
+        INSERT INTO clients(firstname_client, lastname_client) VALUES('Евгений', 'Суворов');
+        """)
+        conn.commit()
+
+        cur.execute("""
+        INSERT INTO phone_number(number, client_id) VALUES(89354652124, 1);
+        """)
+        conn.commit()
+
+
+        cur.execute("""
+        UPDATE clients SET firstname_client=%s and lastname_client=%s WHERE id=%s;
+        """, ('Евгения', 'Суворова'))
+
+
+        cur.execute("""
+        DELETE FROM phone_number WHERE client_id=%s;
+        """, (1,))
+
+
+        cur.execute("""
+        DELETE FROM clients WHERE client_id=%s;
+        """, (1,))
+
+def get_client(cursor, firstname_client: str,lastname_client: str, email,number ) -> int:
+            cursor.execute("""
+            SELECT id FROM course WHERE name=%s;
+            """, (firstname_client,lastname_client,email,number ))
+            return cur.fetchone()[0]
+        python_id = get_course_id(cur, 'Python')
+        print('python_id', python_id)
+
+conn.close()

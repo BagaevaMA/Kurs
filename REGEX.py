@@ -43,8 +43,7 @@ for item in a:
 
 pprint(change_contact_list)
 a_dict = {}
-
-for kl in change_contact_list:
+for kl in change_contact_list[1:]:
     a_dict_info = {}
     if len(kl) > 1:
         name = kl[0].split(",")
@@ -120,12 +119,18 @@ for kl in change_contact_list:
 pprint(a_dict)
 
 my_contact_list=[]
+my_contact_list.append(change_contact_list[0])
 for k,v in a_dict.items():
-    my_contact_list.append(k)
+    every_name=[]
+    res_name = re.split('[,]+', k)
+    every_name.append(res_name[0])
+    every_name.append(res_name[1])
     for key, value in v.items():
-        my_contact_list.append(value)
+        every_name.append(value)
+    my_contact_list.append(every_name)
+print(my_contact_list)
 
 
 with open("phonebook.csv", "w", encoding='utf-8') as f:
-    datawriter = csv.writer(f, delimiter=" ")
+    datawriter = csv.writer(f, delimiter=",")
     datawriter.writerows(my_contact_list)
